@@ -1,1 +1,13 @@
-Hello 1007
+# Try to fetch text
+try:
+    response = requests.get(text_url)
+    response.raise_for_status()
+    text_content = response.text
+except Exception as e:
+    text_content = None
+    screen.clear()
+    screen.text_pixels("Error loading text", x=10, y=10, text_color='black')
+    screen.text_pixels(str(e), x=10, y=30, text_color='black')
+    screen.update()
+    sound.speak("Error fetching file")
+    exit(1)
